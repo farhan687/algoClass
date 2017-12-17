@@ -104,3 +104,19 @@ tree.traverseBreadthFirst(function(node) {
   breadthFirstResult.push(node);
 });
 console.log(breadthFirstResult, 'should be [1,2,3,4,5,6,7,8]');
+
+
+
+Tree.prototype.isSubTree = function(subTree) {
+	for (var i = 0; i < this.children.length; i++) {
+  	var child = this.children[i];
+   if (child.value === subTree.value && child.children.length === subTree.children.length) {
+    	console.log(child.value, subTree.value, child.children.length, subTree.children.length);
+      return true;
+    }
+    child.isSubTree(subTree); 
+  }
+  return false;
+};
+
+console.log(tree.isSubTree(branch1));
